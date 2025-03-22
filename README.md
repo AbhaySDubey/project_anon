@@ -32,7 +32,7 @@
 - **Face Detection:** To Begin with we'll first have to detect the faces occuring in the given ***frame*** using any of the following:
 
     - Haar Cascade Classifier
-    #### - (Using this)[Ultra Light Fast Generic Face Detector - 1MB](https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB)
+    - #### (Using this)[Ultra Light Fast Generic Face Detector - 1MB](https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB)
     - [YOLOv8 - Face Detection](https://huggingface.co/arnabdhar/YOLOv8-Face-Detection)
     - [EgoBlur](https://www.projectaria.com/tools/egoblur/)
 
