@@ -40,8 +40,10 @@ async def detect_faces(image_path=None, video_path=None, save=False, output_path
         
         width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-        out = cv2.VideoWriter(output_path, fourcc, org_fps, (width, height))
+        if save:
+            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+            out = cv2.VideoWriter(output_path, fourcc, org_fps, (width, height))
+        
         while True:
             ret, frame = cap.read()
             if not ret:
