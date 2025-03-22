@@ -2,6 +2,8 @@
 
 ### Problem Statement - WHCS02 / Open Innovation
 
+---
+
 ## **Introduction**
 - ### ***project_anon*** is an effective way to anonymize people or any sensitive sectors in an image.
 
