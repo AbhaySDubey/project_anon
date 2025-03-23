@@ -2,16 +2,19 @@ import cv2
 from ultralight import UltraLightDetector
 from ultralight.utils import draw_faces
 import time
+import os
 import asyncio
 
 def load_caffe_models():
+    models_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "opencv_models")
+    
     age_net = cv2.dnn.readNet(
-        r"D:\hackathons\we_hack_2025\project_anon\opencv_models\age_net.caffemodel",
-        r"D:\hackathons\we_hack_2025\project_anon\opencv_models\age_deploy.prototxt"
+        os.path.join(models_dir, "age_net.caffemodel"),
+        os.path.join(models_dir, "age_deploy.prototxt")
     )
     gender_net = cv2.dnn.readNet(
-        r"D:\hackathons\we_hack_2025\project_anon\opencv_models\gender_net.caffemodel",
-        r"D:\hackathons\we_hack_2025\project_anon\opencv_models\gender_deploy.prototxt"
+        os.path.join(models_dir, "gender_net.caffemodel"),
+        os.path.join(models_dir, "gender_deploy.prototxt")
     )
     
     return age_net, gender_net
@@ -81,7 +84,7 @@ def apply_black_patch(frame, face_img, color=(0,0,0)):
     frame[y1:y2, x1:x2] = color
     return frame
 
-def apply_gaussian_blur(frame, face_img, blur_factor=25):
+def apply_gaussian_blur(frame, face_img, blur_factor=40):
     """Apply strong Gaussian blur to face region"""
     if frame is None or not face_img:
         return frame
