@@ -72,7 +72,7 @@ async def detect_faces(image_path=None, video_path=None, save=False, output_path
 if __name__ == "__main__":
     image_path = r"D:\hackathons\we_hack_2025\project_anon\trials\crowd.jpeg"
     video_path = r"D:\hackathons\we_hack_2025\project_anon\trials\crowd_of_people_walking.mp4"
-    output_path_root = r"D:\hackathons\we_hack_2025\project_anon\trials\output"
+    output_path_root = r"D:\hackathons\we_hack_2025\project_anon\trials\output\face_detection"
     # boxes, scores = asyncio.run(detect_faces(image_path=image_path, save=True, output_path_root=output_path_root)) # detect faces in image
     start_time = time.perf_counter()
     boxes, scores = asyncio.run(detect_faces(video_path=video_path, save=True, output_path_root=output_path_root)) # detect faces in video

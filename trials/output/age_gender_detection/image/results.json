@@ -1,0 +1,92 @@
+{
+  "input": "D:\\hackathons\\we_hack_2025\\project_anon\\trials\\teenage_girls.png",
+  "output": {
+    "results": [
+      {
+        "index": 0,
+        "box": [
+          130,
+          4,
+          183,
+          62
+        ],
+        "score": 0.999798595905304,
+        "gender": "Female",
+        "gender_confidence": 0.9999358654022217,
+        "age": "25-32",
+        "age_confidence": 0.9991405010223389
+      },
+      {
+        "index": 1,
+        "box": [
+          515,
+          67,
+          567,
+          129
+        ],
+        "score": 0.9997451901435852,
+        "gender": "Female",
+        "gender_confidence": 0.9995600581169128,
+        "age": "25-32",
+        "age_confidence": 0.9091054797172546
+      },
+      {
+        "index": 2,
+        "box": [
+          201,
+          14,
+          254,
+          82
+        ],
+        "score": 0.999541163444519,
+        "gender": "Female",
+        "gender_confidence": 0.9996178150177002,
+        "age": "25-32",
+        "age_confidence": 0.998964786529541
+      },
+      {
+        "index": 3,
+        "box": [
+          277,
+          50,
+          334,
+          120
+        ],
+        "score": 0.9989880919456482,
+        "gender": "Female",
+        "gender_confidence": 0.9992803931236267,
+        "age": "25-32",
+        "age_confidence": 0.4636235535144806
+      },
+      {
+        "index": 4,
+        "box": [
+          638,
+          89,
+          668,
+          142
+        ],
+        "score": 0.9941954016685486,
+        "gender": "Female",
+        "gender_confidence": 0.9757590293884277,
+        "age": "8-12",
+        "age_confidence": 0.7633556723594666
+      },
+      {
+        "index": 5,
+        "box": [
+          424,
+          72,
+          455,
+          131
+        ],
+        "score": 0.9631145000457764,
+        "gender": "Female",
+        "gender_confidence": 0.9464367628097534,
+        "age": "60+",
+        "age_confidence": 0.6626654863357544
+      }
+    ],
+    "output_image": "D:\\hackathons\\we_hack_2025\\project_anon\\trials\\output\\age_gender_detection/image/output_image.jpeg"
+  }
+}
