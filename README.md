@@ -49,4 +49,4 @@
     - Another prominent feature is a selective blurring feature where you can enter indices for the faces that have been identified in the image and the corresponding faces would be anonymized.
 
     - To use this, you can check the **JSON results** or the **Face Detection** tab alongside the processing tab.
-    ![Selective Blurring Options](selective_blurring_options.png)
+    ![Selective Blurring Options](./temp/selective_blurring_options.png)
