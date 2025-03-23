@@ -3,6 +3,9 @@
 ### Problem Statement - WHCS02 / Open Innovation
 
 ---
+### Live Link: https://huggingface.co/spaces/intuitive262/project_anon
+
+---
 
 ## **Introduction**
 - ### ***project_anon*** is an effective way to anonymize people or any sensitive sectors in an image.
@@ -50,3 +53,28 @@
 
     - To use this, you can check the **JSON results** or the **Face Detection** tab alongside the processing tab.
     ![Selective Blurring Options](./temp/selective_blurring_options.png)
+
+- **Example Output:**
+    - Gaussian Blur
+
+    > Filters:
+
+    >> Age: 25 - 32
+            
+    ![Example Output - Gaussian Blur](temp/op_gaussian_blur.png)
+
+    - Black Patch
+
+    > Filters:
+
+    >> Age: 25 - 32
+
+    >> Gender: Female
+
+    ![Example Output - Black Patch](temp/op_black_patch.png)
+
+    - Pixelation
+    
+    > Filters: None
+
+    ![Example Output - Pixelation](temp/op_pixelation.png)
