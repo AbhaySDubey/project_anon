@@ -27,24 +27,26 @@
 
 ## **Workfolow**
 
-### *From what is decided, so far*:
-
-- **Face Detection:** To Begin with we'll first have to detect the faces occuring in the given ***frame*** using any of the following:
-
-    - Haar Cascade Classifier
-    - #### (Using this) [Ultra Light Fast Generic Face Detector - 1MB](https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB)
-    - [YOLOv8 - Face Detection](https://huggingface.co/arnabdhar/YOLOv8-Face-Detection)
-    - [EgoBlur](https://www.projectaria.com/tools/egoblur/)
-
-- **We'll be caching these faces for further use (probably use Redis with time-stamps or frame numbers):**
+- **Face Detection:** I'm using the [Ultra Light Fast Generic Face Detector - 1MB](https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB) which is a very lightweight and fast face detection model.
 
 - **Age/Gender Detection and Blurring:**
+    - I'm using the OpenCV DNN Face Detection Models for Age and Gender Detection which have a small size (~30 MB each) and are pretty efficient and fast at age/gender estimation (~0.2-0.3 ms per face)
+    - The web-app has several filters such as for:
+        - age filters:
+            > the age classes are: ['0-2', '4-6', '8-12', '15-20', '25-32', '38-43', '48-53', '60+']
 
-    - I still haven't decided on what model to use for this or to be fair even what approach to take.
-    - Should I go for a pre-trained model that is capable of detecting age and gender without training or should I instead fine-tune a CNN model myself.
-    - The latter approach is definitely going to be overkill, given the fact that I've limited time and there are a few models available that are pretty good at estimation of age and gender.
-    - I'm sure about one thing however, that it'll be a better idea to cache faces w.r.t. time-stamps, frame numbers, etc. and use mathematical or ML-based ligthweight methods to compare and evaluate the faces using the cache instead of calling upon the heavy CNN model over and over again.
-    - The previous point also allows me to provide users with the ability to select certain face(s) on the basis of which blur operation will be performed (viz. blurring the selected face(s) or blurring all faces except the selected face(s)).
+        - gender filters:
+            > Male / Female
 
-- **Object Detection and NSFW blurring:**
-    - I also wish to add this, but I'm 80% sure that implementing the above functionalities and preparing the PPT, Video would take up most of the time.
+        - the operation to perform to implement anonymization, viz.
+            > Gaussian Blur
+
+            > Black Patch (Simple Occlusion)
+
+            > Pixelation
+
+- **Selective Blurring:**
+    - Another prominent feature is a selective blurring feature where you can enter indices for the faces that have been identified in the image and the corresponding faces would be anonymized.
+
+    - To use this, you can check the **JSON results** or the **Face Detection** tab alongside the processing tab.
+    ![Selective Blurring Methods](image.png)
