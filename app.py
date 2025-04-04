@@ -66,15 +66,21 @@ def process_image(image, operation_name, age_filters=[], gender_filters=[], sele
     # Create a temporary copy for drawing face boxes
     image_with_boxes = image_cv.copy()
     
+    face_thumbnails = [] 
     # Draw boxes around all detected faces with indices
     for i, pred in enumerate(predictions):
         box = np.array(pred['box'])
         x1, y1, x2, y2 = box.astype(int)
         # Draw box
-        cv2.rectangle(image_with_boxes, (x1, y1), (x2, y2), (0, 255, 0), 2)
+        cv2.rectangle(image_with_boxes, (x1, y1), (x2, y2), (0, 255, 0), 1)
+        face_img = image_cv[y1:y2, x1:x2]
+        face_rgb = cv2.cvtColor(face_img, cv2.COLOR_BGR2RGB)
+        
+        caption = f"Face #{i} | {pred['gender']} | {pred['age']}"
+        face_thumbnails.append((face_rgb, caption))
         # Draw index
-        cv2.putText(image_with_boxes, f"#{i}: {pred['gender']}, {pred['age']}", 
-                   (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+        # cv2.putText(image_with_boxes, f"#{i}: {pred['gender']}, {pred['age']}", 
+        #            (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
     
     # Convert to RGB for display
     image_with_boxes_rgb = cv2.cvtColor(image_with_boxes, cv2.COLOR_BGR2RGB)
@@ -122,7 +128,7 @@ def process_image(image, operation_name, age_filters=[], gender_filters=[], sele
         "selected_faces": [int(idx.strip()) for idx in selected_face_indices.split(",") if idx.strip().isdigit()] if selected_face_indices else []
     }
     
-    return [image_with_boxes_rgb, processed_image_rgb, json.dumps(results_data, indent=2)]
+    return [image_with_boxes_rgb, processed_image_rgb, json.dumps(results_data, indent=2), face_thumbnails]
 
 def process_video(video_path, operation_name, age_filters=[], gender_filters=[], progress=gr.Progress()):
     """Process a video with face blurring"""
@@ -256,11 +262,21 @@ with gr.Blocks(title="Face Privacy Protection Tool") as demo:
                         
                         with gr.TabItem("JSON Results"):
                             json_output = gr.JSON(label="Detection Results")
+                        
+                        with gr.TabItem("Detected Faces (Metadata)"):
+                            face_gallery = gr.Gallery(
+                                label="Detected Faces",
+                                show_label=True,
+                                columns=4,
+                                height="auto",
+                                object_fit="contain"
+                            )
+                            
             
             image_button.click(
                 process_image,
                 inputs=[image_input, operation_dropdown, age_filter, gender_filter, selected_faces],
-                outputs=[image_with_boxes, image_output, json_output]
+                outputs=[image_with_boxes, image_output, json_output, face_gallery]
             )
         
         with gr.TabItem("Video Processing"):
