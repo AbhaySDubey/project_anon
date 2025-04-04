@@ -4,6 +4,7 @@ from ultralight.utils import draw_faces
 import time
 import os
 import asyncio
+import numpy as np
 
 def load_caffe_models():
     models_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "opencv_models")
@@ -44,6 +45,7 @@ async def detect_faces_frame(detector, frame=None):
             x2_pad = min(width, x2 + padding)
             y2_pad = min(height, y2 + padding)
             
+            box = np.array([x1_pad, y1_pad, x2_pad, y2_pad]) 
             face_img = frame[y1_pad:y2_pad, x1_pad:x2_pad] 
                 
             if face_img.shape[0] < 10 or face_img.shape[1] < 10:
@@ -238,4 +240,4 @@ async def process_input(
 if __name__ == "__main__":
     image_path = r"D:\hackathons\we_hack_2025\project_anon\trials\teenage_girls.png"
     output_path_root = r"D:\hackathons\we_hack_2025\project_anon\output"
-    asyncio.run(process_input(image_path=image_path, output_path_root=output_path_root, operation=2))
+    asyncio.run(process_input(image_path=image_path, filters={"age": [], "gender": ["Male"]}, output_path_root=output_path_root, operation=2))
