@@ -1,8 +1,5 @@
 # project_anon
 
-### Problem Statement - WHCS02 / Open Innovation
-
----
 ### Live Link: https://huggingface.co/spaces/intuitive262/project_anon
 
 ---
